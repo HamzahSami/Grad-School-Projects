@@ -1,1 +1,51 @@
 /*Blood Donation Prediction Code written in SAS*/
+
+data blooddonors;
+input monthslastdonation donations volume first marchdonor$ @@;
+cards;
+run;
+
+/*fitting truncated negative binomial model*/
+proc format;
+value $marchdonorfmt 'no'='ref' 'yes'='marchdonor';
+run;
+
+proc fmm;
+class marchdonor;
+model donations = monthslastdonation volume first marchdonor/dist=truncnegbin;
+format marchdonor $marchdonorfmt.;
+run;
+
+/*checking model fit*/
+proc fmm; 
+model donations=/dist=truncnegbin;
+run;
+
+data deviance_test;
+deviance= 1069.8-791.9;
+pvalue=1-probchi(deviance,4);
+run;
+
+proc print;
+run;
+
+/*using fitted model for prediction*/
+data prediction;
+input monthslastdonation volume first marchdonor$;
+cards;
+11 1.575 60 no
+;
+
+data blooddonors;
+set blooddonors prediction;
+run;
+ 
+proc fmm;
+class marchdonor;
+model donations = monthslastdonation volume first marchdonor/dist=truncnegbin;
+output out=outdata pred=p_donations;
+run;
+
+proc print data=outdata(firstobs=101 obs=101);
+var p_donations;
+run;
