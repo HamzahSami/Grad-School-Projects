@@ -15,4 +15,4 @@ print(p.value<- pchisq(deviance, df=4, lower.tail=FALSE))
 #using fitted model for prediction
 print(bloo <- predict(fitted.model, data.frame(monthslastdonation = 60, volume = 3, monthsfirst = 54, donationmarch = "no"),type="response"))
 
-print(bloo/2)
+print(bloo)
