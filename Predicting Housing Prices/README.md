@@ -1,8 +1,11 @@
- Predicting Housing Prices in Hawthorne, CA.
+# Purpose
+
+- To model Housing Prices for properties in Hawthorne, CA using Compound Poisson method.
+- To simulate a trajectory of 1 year to predict housing prices and the number of homes sold in Hawthorne, CA.
+
+## Background 
  
- DATA:
- 
- The purpose of this project is to predict the housing prices in Hawthorne, CA using Compound Poisson. The data used was pulled from Redfin.com
+- The data used was scraped from Redfin.com
  
 
  
