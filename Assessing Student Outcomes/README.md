@@ -1,0 +1,1 @@
+Worked with Joey Gadbois to analyze Student learning outcomes in SAS. A 4^1 experimental design was programmed into SAS to properly analyze the survey data given. A further analysis of the results is documented here.
